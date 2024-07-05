@@ -24,6 +24,11 @@ import { ref } from "vue";
           newTask.value = "";
         }
       };
+
+      const deleteTask = (index) => {
+        //splice (position to add or remove, nº items to remove)
+        tasks.value.splice(index, 1);
+      }
 </script>
 
 <!-- <script>
@@ -70,10 +75,13 @@ import { ref } from "vue";
     <button type="submit">Submit</button>
   </form>
 
-  <h3>Tasks:</h3>
+  <h3>Tasks:</h3> 
   <ul>
-    <li v-for="task in tasks" :key="task">
-      {{ task }}
+    <li v-for="(task, index) in tasks" :key="task">
+      <span>
+        {{ task }}
+      </span>
+      <button @click="deleteTask(index)">x</button>
     </li>
   </ul>
 
