@@ -1,6 +1,6 @@
 <!-- We have to use export default so we have access to our methods in template -->
-<script setup>
-import { ref } from "vue"; 
+ <script setup>
+import { ref, onMounted } from "vue"; 
 
       const name = ref ("John Doe"); 
       const status = ref ("active");
@@ -29,6 +29,16 @@ import { ref } from "vue";
         //splice (position to add or remove, nº items to remove)
         tasks.value.splice(index, 1);
       }
+      
+  onMounted(async () => {
+    try {
+      const response = await fetch("http://jsonplaceholder.typicode.com/todos");
+      const data = await response.json(); 
+      tasks.value = data.map((task) => task.title);
+    } catch (error) {
+        console.log("Error fetching tasks");
+    }
+  });
 </script>
 
 <!-- <script>
