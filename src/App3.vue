@@ -1,4 +1,5 @@
- <script setup>
+<!-- We don't have to use export default because we are using setup inside the script tag -->
+<script setup>
 import { ref, onMounted } from "vue"; 
 
       const name = ref ("John Doe"); 
